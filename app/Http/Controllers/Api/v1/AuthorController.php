@@ -47,7 +47,7 @@ class AuthorController extends ApiController
      */
     public function showAuthorBooks(Author $author): JsonResponse
     {
-        $books = Book::where('author_id', $author->id)->get();
+        $books = Book::where('author_id', $author->id)->orderBy('rating', 'desc')->get();
 
         return $this->sendResponse(['total' => $books->count(), 'books' => $books], 'Ok', 200);
     }
